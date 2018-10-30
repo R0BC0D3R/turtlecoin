@@ -142,7 +142,7 @@ if(NOT MSVC)
     # Need to build against libc++ instead of libstc++ on apple
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -nostdinc++ -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -nodefaultlibs -lc++ -lc++abi -lm -lc -lgcc -lgcc_eh")
     # Need these flags so gcc OSX works on the cryptopp ASM - https://groups.google.com/forum/#!topic/cryptopp-users/po8yO-vYaac
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wa -q -DCRYPTOPP_CLANG_INTEGRATED_ASSEMBLER")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCRYPTOPP_CLANG_INTEGRATED_ASSEMBLER=1")
   endif()
 
   if(NOT APPLE)
