@@ -6,6 +6,8 @@
 #include <WalletBackend/WalletBackend.h>
 ////////////////////////////////////////
 
+#include <Common/FileSystemShim.h>
+
 #include <config/CryptoNoteConfig.h>
 
 #include <CryptoNoteCore/Account.h>
@@ -17,8 +19,6 @@
 #include <cryptopp/modes.h>
 #include <cryptopp/sha.h>
 #include <cryptopp/pwdbased.h>
-
-#include <filesystem>
 
 #include <fstream>
 
@@ -88,7 +88,7 @@ WalletError checkNewWalletFilename(std::string filename)
     }
 
     /* Don't leave random files around if we fail later down the road */
-    std::filesystem::remove(filename);
+    fs::remove(filename);
     
     return SUCCESS;
 }
