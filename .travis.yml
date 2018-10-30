@@ -53,23 +53,6 @@ matrix:
     - LABEL="linux-clang-6"
     - STRIP="strip"
 
-  # Ubuntu, clang-5
-  - os: linux
-    compiler: clang
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        - llvm-toolchain-trusty-5.0
-        packages: 
-          - libboost1.55-all-dev
-          - clang-5.0
-          - libstdc++-6-dev
-    env:
-    - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
-    - LABEL="linux-clang-5"
-    - STRIP="strip"
-
   ## OSX, g++-8
   - os: osx
     osx_image: xcode10
@@ -112,12 +95,14 @@ install:
 # Need to uninstall oclint to get newer gcc installed https://github.com/travis-ci/travis-ci/issues/8826
 - if [[ "${LABEL:0:4}" == "osx-" ]]; then brew cask uninstall --force oclint || true ; fi
 
+# Need a newer version of llvm/clang to get std::filesystem / std::experimental::filesystem 
+- if [[ "${LABEL:0:4}" == "osx-" ]]; then brew install llvm || brew upgrade llvm ; fi
+# Update path to point to newer llvm/clang
+- if [[ "${LABEL:0:4}" == "osx-" ]]; then echo 'export PATH="/usr/local/opt/llvm/bin:$PATH"' >> ~/.bash_profile; fi
+
 # Install the correct gcc version
 - if [[ "$LABEL" == "osx-g++-8" ]]; then brew install gcc@8 ; fi
 - if [[ "$LABEL" == "osx-g++-7" ]]; then brew install gcc@7 ; fi
-
-# Upgrade clang (default doesn't support <filesystem> or <experimental/filesystem>
-- if [[ "$LABEL" == "osx-clang" ]]; then brew install llvm || brew upgrade llvm; fi
 
 - if [[ "$LABEL" == "aarch64" ]]; then export BASEDIR=`pwd` ; fi
 - if [[ "$LABEL" == "aarch64" ]]; then cd $HOME ; fi

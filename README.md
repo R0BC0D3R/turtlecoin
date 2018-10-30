@@ -24,7 +24,7 @@ You will also need either GCC/G++, or Clang.
 
 If you are using GCC, you will need GCC-6.0 or higher.
 
-If you are using Clang, you will need Clang 5.0 or higher. You will also need libstdc++\-6.0 or higher.
+If you are using Clang, you will need Clang 6.0 or higher. You will also need libstdc++\-6.0 or higher.
 
 ##### GCC setup, on Ubuntu
 
