@@ -399,9 +399,9 @@ std::unordered_map<Crypto::PublicKey, int64_t> vectorToTransfers(std::vector<Tra
 {
     std::unordered_map<Crypto::PublicKey, int64_t> transfers;
 
-    for (const auto & [publicKey, amount] : vector)
+    for (const auto &transfer : vector)
     {
-        transfers[publicKey] = amount;
+        transfers[transfer.publicKey] = transfer.amount;
     }
 
     return transfers;
