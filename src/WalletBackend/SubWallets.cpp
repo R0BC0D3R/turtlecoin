@@ -12,6 +12,8 @@
 
 #include <ctime>
 
+#include <mutex>
+
 #include <random>
 
 #include <WalletBackend/Utilities.h>
