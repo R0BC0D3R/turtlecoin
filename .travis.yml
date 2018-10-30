@@ -117,7 +117,7 @@ install:
 - if [[ "$LABEL" == "osx-g++-7" ]]; then brew install gcc@7 ; fi
 
 # Upgrade clang (default doesn't support <filesystem> or <experimental/filesystem>
-- if [[ "$LABEL" == "osx-clang" ]]; then brew upgrade llvm; fi
+- if [[ "$LABEL" == "osx-clang" ]]; then brew install llvm || brew upgrade llvm; fi
 
 - if [[ "$LABEL" == "aarch64" ]]; then export BASEDIR=`pwd` ; fi
 - if [[ "$LABEL" == "aarch64" ]]; then cd $HOME ; fi
