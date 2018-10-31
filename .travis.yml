@@ -96,7 +96,7 @@ install:
 
 # Need a newer version of llvm/clang to get std::filesystem / std::experimental::filesystem 
 - if [[ "${LABEL:0:4}" == "osx-" ]]; then brew install llvm || brew upgrade llvm ; fi
-- if [[ "${LABEL:0:4}" == "osx-" ]]; then ls /usr/local/opt/llvm/bin/ ; fi
+- if [[ "${LABEL:0:4}" == "osx-" ]]; then ls -R /usr/local/opt/llvm/ ; fi
 
 # Install the correct gcc version
 - if [[ "$LABEL" == "osx-g++-8" ]]; then brew install gcc@8 ; fi

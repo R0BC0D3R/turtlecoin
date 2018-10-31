@@ -112,6 +112,8 @@ target_link_libraries(cryptotest Crypto Common)
 
 if (MSVC)
     target_link_libraries(WalletBackend Mnemonics Wallet NodeRpcProxy Transfers Rpc Http CryptoNoteCore System Logging Common ${Boost_LIBRARIES} cryptopp-static)
+else if (APPLE)
+    target_link_libraries(WalletBackend Mnemonics Wallet NodeRpcProxy Transfers Rpc Http CryptoNoteCore System Logging Common ${Boost_LIBRARIES} cryptopp-static libc++fs) 
 else()
     target_link_libraries(WalletBackend Mnemonics Wallet NodeRpcProxy Transfers Rpc Http CryptoNoteCore System Logging Common ${Boost_LIBRARIES} cryptopp-static stdc++fs)
 endif()
