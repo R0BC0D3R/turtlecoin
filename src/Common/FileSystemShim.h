@@ -8,7 +8,5 @@
     #include <experimental/filesystem>
     namespace fs = std::experimental::filesystem;
 #else
-    /* Just to see what happens, remove me */
-    #include <experimental/filesystem>
     #error Your compiler does not support either <filesystem> or <experimental/filesystem>. Please upgrade to one that does.
 #endif
