@@ -149,7 +149,7 @@ if(NOT MSVC)
       elseif(CMAKE_C_COMPILER_ID STREQUAL "Clang")
           # Need to link against the llvm libc++ library, default is too old for std::filesystem
           # Since we're not using the system libc++, need to give the path for libc++fs
-          set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -I/usr/local/opt/llvm/include/c++/v1 -l/usr/local/opt/llvm/lib/libc++fs")
+          set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -I/usr/local/opt/llvm/include/c++/v1 -l/usr/local/opt/llvm/lib/libc++fs.a")
       endif()
   endif()
 

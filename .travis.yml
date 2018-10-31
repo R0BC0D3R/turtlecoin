@@ -76,7 +76,7 @@ matrix:
     osx_image: xcode10
     compiler: clang
     env:
-    - MATRIX_EVAL="CC=clang && CXX=clang++"
+    - MATRIX_EVAL="CC=/usr/local/opt/llvm/bin/clang && CXX=/usr/local/opt/llvm/bin/clang++"
     - LABEL="osx-clang"
     - STRIP="strip"
 
