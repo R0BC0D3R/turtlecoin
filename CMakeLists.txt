@@ -139,17 +139,19 @@ if(NOT MSVC)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 ${STATICASSERTCPP_FLAG} ${WARNINGS} ${CXX_WARNINGS} ${ARCH_FLAG} ${MAES_FLAG}")
 
   if(APPLE)
+      # Add the llvm lib path to the search directories so we can pick up the llvm version of libc++fs
+      set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} /usr/local/opt/llvm/lib)
+
       if (CMAKE_C_COMPILER_ID STREQUAL "GNU")
           # Need to build against libc++ instead of libstc++ on apple
-          set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -nostdinc++ -I/usr/local/opt/llvm/include/c++/v1 -L /usr/local/opt/llvm/lib/ -lc++fs -nodefaultlibs -lc++ -lc++abi -lm -lc -lgcc -lgcc_eh")
+          set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -nostdinc++ -I/usr/local/opt/llvm/include/c++/v1 -nodefaultlibs -lc++ -lc++abi -lm -lc -lgcc -lgcc_eh")
 
           # Need these flags so gcc OSX works on the cryptopp ASM - https://groups.google.com/forum/#!topic/cryptopp-users/po8yO-vYaac
           set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCRYPTOPP_CLANG_INTEGRATED_ASSEMBLER=1")
 
       elseif(CMAKE_C_COMPILER_ID STREQUAL "Clang")
           # Need to link against the llvm libc++ library, default is too old for std::filesystem
-          # Since we're not using the system libc++, need to give the path for libc++fs
-          set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -I/usr/local/opt/llvm/include/c++/v1 -L /usr/local/opt/llvm/lib/ -lc++fs")
+          set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -I/usr/local/opt/llvm/include/c++/v1")
       endif()
   endif()
 

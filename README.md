@@ -26,7 +26,7 @@ If you are using GCC, you will need GCC-6.0 or higher.
 
 If you are using Clang, you will need Clang 6.0 or higher. You will also need libstdc++\-6.0 or higher.
 
-##### GCC setup, on Ubuntu
+##### Ubuntu, using GCC
 
 - `sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y`
 - `sudo apt-get update`
@@ -47,7 +47,7 @@ The binaries will be in the `src` folder when you are complete.
 - `cd src`
 - `./TurtleCoind --version`
 
-##### Clang setup, on Ubuntu
+##### Ubuntu, using Clang
 
 - `sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y`
 - `wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -`
@@ -100,7 +100,7 @@ The binaries will be in the `src` folder when you are complete.
 - `cd src`
 - `./TurtleCoind --version`
 
-#### Apple
+#### OSX/Apple, using GCC
 
 ##### Prerequisites
 
@@ -123,6 +123,31 @@ The binaries will be in the `src` folder when you are complete.
 
 - `cd src`
 - `./TurtleCoind --version`
+
+#### OSX/Apple, using Clang
+
+##### Prerequisites
+
+- Install XCode and Developer Tools.
+
+##### Building
+
+- `which brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+- `brew install --force cmake boost llvm`
+- `export CC=/usr/local/opt/llvm/bin/clang`
+- `export CXX=/usr/local/opt/llvm/bin/clang++`
+- `git clone -b master --single-branch https://github.com/turtlecoin/turtlecoin`
+- `cd turtlecoin`
+- `mkdir build`
+- `cd build`
+- `cmake ..`
+- `make`
+
+The binaries will be in the `src` folder when you are complete.
+
+- `cd src`
+- `./TurtleCoind --version`
+
 
 #### Windows
 
