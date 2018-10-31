@@ -22,10 +22,6 @@
 /* CONSTRUCTORS / DECONSTRUCTORS */
 ///////////////////////////////////
 
-SubWallets::SubWallets()
-{
-}
-
 /* Makes a new subwallet */
 SubWallets::SubWallets(
     const Crypto::SecretKey privateSpendKey,
