@@ -76,7 +76,7 @@ matrix:
     osx_image: xcode10
     compiler: clang
     env:
-    - MATRIX_EVAL="CC=/usr/local/opt/llvm/bin/clang && CXX=/usr/local/opt/llvm/bin/clang++"
+    - MATRIX_EVAL="CC=clang && CXX=clang++"
     - LABEL="osx-clang"
     - STRIP="strip"
 
@@ -92,11 +92,10 @@ before_install:
 
 install:
 # Need to uninstall oclint to get newer gcc installed https://github.com/travis-ci/travis-ci/issues/8826
-- if [[ "${LABEL:0:4}" == "osx-" ]]; then brew cask uninstall --force oclint || true ; fi
+- if [[ "${LABEL:0:7}" == "osx-g++" ]]; then brew cask uninstall --force oclint || true ; fi
 
-# Need a newer version of llvm/clang to get std::filesystem / std::experimental::filesystem 
+# Need a newer version of llvm to link against to get std::filesystem / std::experimental::filesystem 
 - if [[ "${LABEL:0:4}" == "osx-" ]]; then brew install llvm || brew upgrade llvm ; fi
-- if [[ "${LABEL:0:4}" == "osx-" ]]; then ls -R /usr/local/opt/llvm/ ; fi
 
 # Install the correct gcc version
 - if [[ "$LABEL" == "osx-g++-8" ]]; then brew install gcc@8 ; fi
